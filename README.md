@@ -23,3 +23,8 @@ O design, incluindo cores e outros recursos visuais, foi baseado em um modelo ex
 
 Banco de dados SQL SERVER esta Online, pode ser usado sem precisar mudar 
 para o Local
+
+OBS: precisa ser ajustado algumas coisas relacionado a validações e interfaçe,
+esta sendo ajustado, porem como o prazo foi estipulado as devidas funcionalidades foram priorizadas para entrega. 
+
+Ref: Testes funcionais e ajuste de bug sendo executados. 
