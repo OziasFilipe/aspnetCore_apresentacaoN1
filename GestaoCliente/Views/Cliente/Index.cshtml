@@ -1,0 +1,186 @@
+﻿@model IEnumerable<Gestao_de_Clientes.Models.ClienteModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="breadcomb-area" >
+    <div class="container">
+        <div class="row" style="margin-top:20px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="fa fa-wpforms"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>Clientes</h2>
+                                    <p><span class="bread-ntd">Módulo/Cliente</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-report pull-right" style="padding-left:10px">
+                                <a  title="Voltar" class="btn" onclick="BtnFiltro()">
+                                    Filtros Avançados
+                                </a>
+                            </div>
+                            <div class="breadcomb-report pull-right">
+                                <a asp-action="Create" title="Criar" class="btn">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="breadcomb-area" id="modalFiltro" style="display:none">
+    <div class="container">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <input id="filtroCodigo" type="text" class="form-control" placeholder="Código" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <input id="filtroCPFCNPJ" type="text" class="form-control" placeholder="CPF/CNPJ" />
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <input id="filtroNomeRazaoSocial" type="text" class="form-control" placeholder="Nome/Razão Social" />
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:15px">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <button id="btnPesquisar" class="btn btn-primary pull-right">Pesquisar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="data-table-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="data-table-list">
+                   
+                    <div class="table-responsive">
+                        <table id="data-table-basic" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Nome Fantasia
+                                    </th>
+                                    <th>
+                                        Razão Social
+                                    </th>
+                                    <th>
+                                        CPF/CNPJ
+                                    </th>
+                                    <th>
+                                        RG/IE
+                                    </th>
+                                    <th>
+                                        Tipo
+                                    </th>
+                                    <th>
+                                        Ação
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td> @Html.DisplayFor(modelItem => item.NomeFantasia)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.NomeRazaoSocial)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.CPFCNPJ)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.RGIE)</td>
+                                        <td> @Html.DisplayFor(modelItem => item.Tipo)</td>
+                                        <td>
+                                            <div class="btn-group" role="group" aria-label="Basic example">
+                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+                                                    <i class="fa fa-edit"></i> Editar
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i> Deletar
+                                                </a>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById('btnPesquisar').addEventListener('click', function () {
+        var filtroCodigo = document.getElementById('filtroCodigo').value;
+        var filtroCPFCNPJ = document.getElementById('filtroCPFCNPJ').value;
+        var filtroNomeRazaoSocial = document.getElementById('filtroNomeRazaoSocial').value;
+
+        fetch(`/Cliente/Pesquisar?filtroCodigo=${filtroCodigo}&filtroCPFCNPJ=${filtroCPFCNPJ}&filtroNomeRazaoSocial=${filtroNomeRazaoSocial}`)
+            .then(response => response.json())
+            .then(data => {
+                var tableBody = document.querySelector('#data-table-basic tbody');
+                tableBody.innerHTML = '';
+
+                data.forEach(function (cliente) {
+                    var row = document.createElement('tr');
+                    row.innerHTML = `
+                            <td>${cliente.nomeFantasia}</td>
+                            <td>${cliente.nomeRazaoSocial}</td>
+                            <td>${cliente.cpfcnpj}</td>
+                            <td>${cliente.rgie}</td>
+                            <td>${cliente.tipo}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="/Cliente/Edit/${cliente.id}" class="btn btn-primary">
+                                        <i class="fa fa-edit"></i> Editar
+                                    </a>
+                                    <a href="/Cliente/Delete/${cliente.id}" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i> Deletar
+                                    </a>
+                                </div>
+                            </td>
+                        `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Erro ao pesquisar clientes:', error));
+    });
+</script>
+
+
+<script>
+    // Botão de filtro
+    let aberto = false;
+    function BtnFiltro() {
+        if (aberto) {
+            document.getElementById("modalFiltro").style.display = "none";
+        } else {
+            document.getElementById("modalFiltro").style.display = "block";
+        }
+        aberto = !aberto; // Alterna o valor de 'aberto'
+    }
+</script>
+
+

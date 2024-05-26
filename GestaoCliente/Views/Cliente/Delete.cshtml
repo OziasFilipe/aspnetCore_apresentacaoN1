@@ -1,0 +1,102 @@
+﻿@model Gestao_de_Clientes.Models.ClienteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="breadcomb-area">
+    <div class="container">
+        <div class="row" style="margin-top:20px">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcomb-list">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-wp">
+                                <div class="breadcomb-icon">
+                                    <i class="fa fa-wpforms"></i>
+                                </div>
+                                <div class="breadcomb-ctn">
+                                    <h2>Deletar</h2>
+                                    <p><span class="bread-ntd">Módulo/Cliente</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="breadcomb-report pull-right">
+                                <a asp-action="Index" title="Voltar" class="btn">
+                                    <i class="fa fa-arrow-left"></i> Voltar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container mt-4 p-4 bg-light border rounded" style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+    <h2 class="text-center text-primary mb-4">Detalhes do Cliente</h2>
+    <dl >
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Codigo)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Codigo)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.NomeFantasia)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.NomeFantasia)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.NomeRazaoSocial)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.NomeRazaoSocial)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.CPFCNPJ)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.CPFCNPJ)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.RGIE)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.RGIE)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Tipo)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Tipo)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.CEP)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.CEP)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Logradouro)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Logradouro)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Numero)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Numero)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Complemento)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Complemento)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Bairro)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Bairro)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Municipio)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Municipio)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.UnidadeFederativa)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.UnidadeFederativa)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Telefone)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Telefone)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Inclusao)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Inclusao)</dd>
+
+        <dt class="col-sm-4 text-right font-weight-bold text-primary">@Html.DisplayNameFor(model => model.Alteracao)</dt>
+        <dd class="col-sm-8">@Html.DisplayFor(model => model.Alteracao)</dd>
+    </dl>
+
+    <div class="text-center mt-4">
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</div>
