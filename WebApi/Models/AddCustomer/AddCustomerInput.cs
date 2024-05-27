@@ -5,14 +5,14 @@
         public int id { get; }
         public string Codigo { get;  set; } = string.Empty;
         public string NomeFantasia { get;  set; } = string.Empty;
-        public string RazaoSocial { get; private set; } = string.Empty;
+        public string RazaoSocial { get;  set; } = string.Empty;
         public string CpfCnpj { get;  set; } = string.Empty;
         public string RG_IE { get;  set; } = string.Empty;
         public string Tipo { get;  set; } = string.Empty;
         public string Cep { get;  set; } = string.Empty;
-        public string Logradouro { get; private set; } = string.Empty;
-        public string Numero { get; private set; } = string.Empty;
-        public string Complemento { get; private set; } = string.Empty;
+        public string Logradouro { get;  set; } = string.Empty;
+        public string Numero { get;  set; } = string.Empty;
+        public string Complemento { get; set; } = string.Empty;
         public string Bairro { get;  set; } = string.Empty;
         public string Municipio { get;  set; } = string.Empty;
         public string UnidadeFederativa { get;  set; } = string.Empty;

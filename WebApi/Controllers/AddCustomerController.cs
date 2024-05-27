@@ -29,11 +29,11 @@ namespace WebApi.Controllers
                 return BadRequest(validationResult.Errors.ToCustomValidationFailure());
             }
            
-            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia,input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.Telefone);
+            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia,input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.Telefone,input.DataInclusao,input.DataAlteracao);
 
             _addCustomerUseCase.AddCustomer(customer);
 
-            return Created("", customer);
+            return Created("", "Registro Salvo com Sucesso!");
         }
 
         [HttpGet]
