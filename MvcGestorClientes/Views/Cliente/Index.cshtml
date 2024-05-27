@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<Domain.Entities.Customer>
+<!-- index.cshtml -->
+
+@Html.Partial("~/Views/Cliente/Edit.cshtml")
+@Html.Partial("~/Views/Cliente/Create.cshtml")
 
 @{
     ViewData["Title"] = "Index";
@@ -28,7 +32,8 @@
                                 </a>
                             </div>
                             <div class="breadcomb-report pull-right">
-                                <a title="Criar" class="btn" data-toggle="modal" data-target="#exampleModal">
+                                <a title="Criar" class="btn" data-toggle="modal" data-target="#criarModal">
+                                    
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>
@@ -107,15 +112,16 @@
                                         <td>@customer.CpfCnpj</td>
                                         <td>@customer.RG_IE</td>
                                         <td>@customer.Tipo</td>
-                                        <td>
-
-                                            <form action="/Cliente/Delete/@customer.Codigo" method="post" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')">
+                                        <td style="display:flex; flex-direction:row">
+                                            <button type="button" class="btn btn-primary" style="margin-right:10px" data-toggle="modal" data-target="#editarModal">
+                                                <i class="fa fa-edit"></i> Editar
+                                            </button>
+                                            <form action="/Cliente/Delete/@customer.Codigo" method="post" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
                                                 <input type="hidden" name="_method" value="DELETE" />
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i> Deletar
                                                 </button>
                                             </form>
-
                                         </td>
 
 
