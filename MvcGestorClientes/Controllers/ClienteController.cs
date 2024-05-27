@@ -23,7 +23,7 @@ namespace Gestao_de_Clientes.Controllers
 		}
 
 		// GET: Cliente
-		public async Task<IActionResult> Index()
+		public  IActionResult Index()
         {
 		var customers = _addCustomerUseCase.GetAllCustomers();
 			
@@ -31,14 +31,33 @@ namespace Gestao_de_Clientes.Controllers
         }
 
        
-        // GET: Cliente/Create
-        public IActionResult Create()
+      
+
+        [HttpPost]
+        public IActionResult Create(AddCustomerInput input)
         {
-            return View();
+            var validationResult = _addCustomerInputValidator.Validate(input);
+
+            if (!validationResult.IsValid)
+            {
+               // return BadRequest(validationResult.Errors.ToCustomValidationFailure());
+            }
+
+            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia, input.RazaoSocial, input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.DataInclusao, input.DataAlteracao);
+
+            _addCustomerUseCase.AddCustomer(customer);
+
+            return Redirect("./index");
+        }
+
+       
+        public IActionResult Delete(int id)
+        {
+            _addCustomerUseCase.DeleteCustomerById(id);
+            return RedirectToAction("Index", "Cliente");
         }
 
 
-    
 
     }
 }

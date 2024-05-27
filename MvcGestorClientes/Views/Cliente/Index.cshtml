@@ -108,15 +108,16 @@
                                         <td>@customer.RG_IE</td>
                                         <td>@customer.Tipo</td>
                                         <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a asp-action="Edit" asp-route-id="@customer.Codigo" class="btn btn-primary">
-                                                    <i class="fa fa-edit"></i> Editar
-                                                </a>
-                                                <a asp-action="Delete" asp-route-id="@customer.Codigo" class="btn btn-danger">
+
+                                            <form action="/Cliente/Delete/@customer.Codigo" method="post" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')">
+                                                <input type="hidden" name="_method" value="DELETE" />
+                                                <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i> Deletar
-                                                </a>
-                                            </div>
+                                                </button>
+                                            </form>
+
                                         </td>
+
 
                                     </tr>
                                 }
@@ -187,7 +188,7 @@
 
 
 
-<form>
+<form action="/Cliente/Create" method="post">
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -202,32 +203,32 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="codigo" class="col-form-label">Código:<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="codigo" required>
+                                <input type="text" class="form-control" id="codigo" name="Codigo" required maxlength="15">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="cpf-cnpj" class="col-form-label">CPF/CNPJ:<span style="color:red">* Auto</span></label>
-                                <input type="text" class="form-control" id="cpf-cnpj" required>
+                                <input type="text" class="form-control" id="cpf-cnpj" name="CpfCnpj" required onchange="BuscarCNPJ()" maxlength="50">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="nome-fantasia" class="col-form-label">Nome Fantasia:</label>
-                                <input type="text" class="form-control" id="nome-fantasia">
+                                <input type="text" class="form-control" id="nome-fantasia" name="NomeFantasia" maxlength="50">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="razao-social" class="col-form-label">Razão Social:<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="razao-social"required>
+                                <input type="text" class="form-control" id="razao-social" name="RazaoSocial" required maxlength="50">
                             </div>
                        
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="rg-ie" class="col-form-label">RG/IE:</label>
-                                <input type="text" class="form-control" id="rg-ie">
+                                <input type="number" class="form-control" id="rg-ie" name="RG_IE" maxlength="12">
                             </div>
                              <div class="form-group col-md-6">
                               <label for="tipo" class="col-form-label">Tipo:</label>
-                              <select class="form-control" id="tipo">
+                              <select class="form-control" id="tipo" name="Tipo">
                                 <option value="PJ">Pessoa Jurídica (PJ)</option>
                                 <option value="PF">Pessoa Física (PF)</option>
                               </select>
@@ -236,47 +237,47 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="cep" class="col-form-label">CEP:<span style="color:red">* Auto</span></label>
-                                <input type="text" class="form-control" id="cep" required onchange="BuscarCep()">
+                                <input type="text" class="form-control" id="cep" name="Cep" required onchange="BuscarCep()" maxlength="9">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="logradouro" class="col-form-label">Logradouro:</label>
-                                <input type="text" class="form-control" id="logradouro" >
+                                <input type="text" class="form-control" id="logradouro" name="Logradouro" maxlength="50">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="numero" class="col-form-label">Número:</label>
-                                <input type="text" class="form-control" id="numero">
+                                <input type="text" class="form-control" id="numero" name="Numero" maxlength="4">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="complemento" class="col-form-label">Complemento:</label>
-                                <input type="text" class="form-control" id="complemento">
+                                <input type="text" class="form-control" id="complemento" name="Complemento" maxlength="50">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="bairro" class="col-form-label">Bairro:</label>
-                                <input type="text" class="form-control" id="bairro">
+                                <input type="text" class="form-control" id="bairro" name="Bairro" maxlength="50">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="municipio" class="col-form-label">Município:</label>
-                                <input type="text" class="form-control" id="municipio">
+                                <input type="text" class="form-control" id="municipio" name="Municipio" maxlength="50">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="unidade-federativa" class="col-form-label">Unidade Federativa:</label>
-                                <input type="text" class="form-control" id="unidade-federativa">
+                                <input type="text" class="form-control" id="unidade-federativa" name="UnidadeFederativa" maxlength="4">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="email" class="col-form-label">Email:<span style="color:red">*</span></label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control" id="email" name="Email" required maxlength="50">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="telefone" class="col-form-label">Telefone:<span style="color:red">*</span></label>
-                                <input type="tel" class="form-control" id="telefone" required>
+                                <input type="tel" class="form-control" id="telefone" name="Telefone" required maxlength="13">
                             </div>
                         </div>
                     </form>
