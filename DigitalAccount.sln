@@ -11,12 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra.Repository", "Infra.Repository\Infra.Repository.csproj", "{2C919FB3-3EDE-46EC-871D-F851838CA77F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3C761993-211C-42E7-89EB-B46E2C4C2381}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.yml = docker-compose.yml
-		loadtest.js = loadtest.js
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestaoClientes.Web", "MvcGestorClientes\GestaoClientes.Web.csproj", "{17EFF550-475A-4CB2-8C79-831AF676B236}"
 EndProject
 Global

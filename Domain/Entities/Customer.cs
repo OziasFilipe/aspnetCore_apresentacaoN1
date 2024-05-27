@@ -4,25 +4,23 @@
     {
         public Customer() { } // Construtor sem parâmetros
 
-        public Customer(string codigo, string nomeFantasia, string razaoSocial, string cpfCnpj, string rG_IE, string tipo, string cep, string logradouro, string numero, string complemento, string bairro, string municipio, string unidadeFederativa, string email, string telefone, DateTime dataInclusao, DateTime dataAlteracao)
+        public Customer(string codigo, string nomeFantasia, string razaoSocial, string cpfCnpj, string rG_IE, string tipo, string cep, string logradouro, string numero, string complemento, string bairro, string municipio, string unidadeFederativa, string email, string telefone)
         {
-            Codigo = codigo ?? throw new ArgumentNullException(nameof(codigo));
-            NomeFantasia = nomeFantasia ?? throw new ArgumentNullException(nameof(nomeFantasia));
-            RazaoSocial = razaoSocial ?? throw new ArgumentNullException(nameof(razaoSocial));
-            CpfCnpj = cpfCnpj ?? throw new ArgumentNullException(nameof(cpfCnpj));
-            RG_IE = rG_IE ?? throw new ArgumentNullException(nameof(rG_IE));
-            Tipo = tipo ?? throw new ArgumentNullException(nameof(tipo));
-            Cep = cep ?? throw new ArgumentNullException(nameof(cep));
-            Logradouro = logradouro ?? throw new ArgumentNullException(nameof(logradouro));
-            Numero = numero ?? throw new ArgumentNullException(nameof(numero));
-            Complemento = complemento ?? throw new ArgumentNullException(nameof(complemento));
-            Bairro = bairro ?? throw new ArgumentNullException(nameof(bairro));
-            Municipio = municipio ?? throw new ArgumentNullException(nameof(municipio));
-            UnidadeFederativa = unidadeFederativa ?? throw new ArgumentNullException(nameof(unidadeFederativa));
-            Email = email ?? throw new ArgumentNullException(nameof(email));
-            Telefone = telefone ?? throw new ArgumentNullException(nameof(telefone));
-            DataInclusao = dataInclusao;
-            DataAlteracao = dataAlteracao;
+            Codigo = codigo;
+            NomeFantasia = nomeFantasia;
+            RazaoSocial = razaoSocial;
+            CpfCnpj = cpfCnpj;
+            RG_IE = rG_IE;
+            Tipo = tipo;
+            Cep = cep;
+            Logradouro = logradouro;
+            Numero = numero;
+            Complemento = complemento;
+            Bairro = bairro;
+            Municipio = municipio;
+            UnidadeFederativa = unidadeFederativa;
+            Email = email;
+            Telefone = telefone;
         }
 
         public string Codigo { get; private set; }
@@ -40,7 +38,7 @@
         public string UnidadeFederativa { get; private set; }
         public string Email { get; private set; }
         public string Telefone { get; private set; }
-        public DateTime DataInclusao { get; private set; }
-        public DateTime DataAlteracao { get; private set; }
+        public DateTime DataInclusao { get;  }
+        public DateTime DataAlteracao { get;  }
     }
 }

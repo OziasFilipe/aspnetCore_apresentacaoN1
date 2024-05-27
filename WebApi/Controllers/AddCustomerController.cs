@@ -28,8 +28,8 @@ namespace WebApi.Controllers
             {
                 return BadRequest(validationResult.Errors.ToCustomValidationFailure());
             }
-            // string codigo, string nomeFantasia, string razaoSocial, string cpfCnpj, string rG_IE, string tipo, string cep, string logradouro, string numero, string complemento, string bairro, string municipio, string unidadeFederativa, string email, string telefone, string dataInclusao, string dataAlteracao
-            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia,input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.Telefone,input.DataAlteracao,input.DataInclusao);
+           
+            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia,input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.Telefone);
 
             _addCustomerUseCase.AddCustomer(customer);
 

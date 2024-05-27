@@ -2,7 +2,7 @@
 {
     public class AddCustomerInput
     {
-        public int id { get; set; }
+        public int id { get; }
         public string Codigo { get;  set; } = string.Empty;
         public string NomeFantasia { get;  set; } = string.Empty;
         public string RazaoSocial { get; private set; } = string.Empty;
@@ -18,15 +18,21 @@
         public string UnidadeFederativa { get;  set; } = string.Empty;
         public string Email { get;  set; } = string.Empty;
         public string Telefone { get;  set; } = string.Empty;
-        public DateTime DataInclusao { get; set; }
-        public DateTime DataAlteracao { get; set; }
+        public DateTime DataInclusao { get; }
+        public DateTime DataAlteracao { get;  }
 
 
         public bool IsValid()
         {
-            return Codigo != string.Empty &&
-                Email != string.Empty && Email.Contains("@") && Email.Contains(".");
-                //Document != string.Empty;
+            return
+                Codigo != string.Empty && Codigo != null &&
+                Email != string.Empty && Email.Contains("@") && Email.Contains(".") &&
+                Tipo != string.Empty && Tipo != null &&
+                CpfCnpj != string.Empty && CpfCnpj != null &&
+                RazaoSocial != string.Empty && RazaoSocial != null &&
+                Cep != string.Empty && Cep != null &&
+                Telefone != string.Empty && Telefone != null;
+               
         }
     }
 }
