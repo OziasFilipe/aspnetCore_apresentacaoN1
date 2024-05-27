@@ -80,7 +80,7 @@
                 <div class="data-table-list">
                    
                     <div class="table-responsive">
-                        <table id="data-table-basic" class="table table-striped">
+                        <table id="data-table-basic" class="table table-striped" >
                             <thead>
                                 <tr>
                                     <th>
@@ -103,7 +103,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 @foreach (var customer in Model)
                                 {
                                     <tr>
@@ -112,11 +112,15 @@
                                         <td>@customer.CpfCnpj</td>
                                         <td>@customer.RG_IE</td>
                                         <td>@customer.Tipo</td>
-                                        <td style="display:flex; flex-direction:row">
-                                            <button type="button" class="btn btn-primary" style="margin-right:10px" data-toggle="modal" data-target="#editarModal">
-                                                <i class="fa fa-edit"></i> Editar
-                                            </button>
-                                            <form action="/Cliente/Delete/@customer.Codigo" method="post" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
+                                        <td >
+                                           
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="breadcomb-report pull-right" style="padding-left:10px">
+                                                    <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal"><i class="fa fa-edit"></i> Editar</a>
+                                                </div>
+                                            </div>
+
+                                            <form action="/Cliente/Delete/@customer.Codigo" method="post" style="margin-top:8px" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
                                                 <input type="hidden" name="_method" value="DELETE" />
                                                 <button type="submit" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i> Deletar
