@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Gestao_de_Clientes.Models.ClienteModel>
+﻿@model IEnumerable<Domain.Entities.Customer>
 
 @{
     ViewData["Title"] = "Index";
@@ -99,20 +99,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var customer in Model)
                                 {
                                     <tr>
-                                        <td> @Html.DisplayFor(modelItem => item.NomeFantasia)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.NomeRazaoSocial)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.CPFCNPJ)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.RGIE)</td>
-                                        <td> @Html.DisplayFor(modelItem => item.Tipo)</td>
+                                        <td>@customer.NomeFantasia</td>
+                                        <td>@customer.RazaoSocial</td>
+                                        <td>@customer.CpfCnpj</td>
+                                        <td>@customer.RG_IE</td>
+                                        <td>@customer.Tipo</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+                                                <a asp-action="Edit" asp-route-id="@customer.Codigo" class="btn btn-primary">
                                                     <i class="fa fa-edit"></i> Editar
                                                 </a>
-                                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                                <a asp-action="Delete" asp-route-id="@customer.Codigo" class="btn btn-danger">
                                                     <i class="fa fa-trash"></i> Deletar
                                                 </a>
                                             </div>

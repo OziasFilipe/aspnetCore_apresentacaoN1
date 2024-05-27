@@ -4,7 +4,7 @@
     {
         public Customer() { } // Construtor sem parâmetros
 
-        public Customer(string codigo, string nomeFantasia, string razaoSocial, string cpfCnpj, string rG_IE, string tipo, string cep, string logradouro, string numero, string complemento, string bairro, string municipio, string unidadeFederativa, string email, string telefone)
+        public Customer(string codigo, string nomeFantasia, string razaoSocial, string cpfCnpj, string rG_IE, string tipo, string cep, string logradouro, string numero, string complemento, string bairro, string municipio, string unidadeFederativa, string email, string telefone, DateTime dataInclusao, DateTime dataAlteracao)
         {
             Codigo = codigo;
             NomeFantasia = nomeFantasia;
@@ -21,6 +21,10 @@
             UnidadeFederativa = unidadeFederativa;
             Email = email;
             Telefone = telefone;
+            DataInclusao = dataInclusao;
+            DataAlteracao = dataAlteracao;
+
+
         }
 
         public string Codigo { get; private set; }
@@ -38,7 +42,7 @@
         public string UnidadeFederativa { get; private set; }
         public string Email { get; private set; }
         public string Telefone { get; private set; }
-        public DateTime DataInclusao { get;  }
-        public DateTime DataAlteracao { get;  }
+        public DateTime DataInclusao { get; private set; }
+        public DateTime DataAlteracao { get; private set; }
     }
 }
