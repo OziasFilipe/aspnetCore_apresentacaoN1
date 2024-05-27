@@ -1,6 +1,7 @@
 ﻿using Domain.Contracts.UseCases.AddCustomer;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.ConstrainedExecution;
 using WebApi.Models.AddCustomer;
 using WebApi.Models.Error;
 
@@ -29,7 +30,7 @@ namespace WebApi.Controllers
                 return BadRequest(validationResult.Errors.ToCustomValidationFailure());
             }
            
-            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia,input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.Telefone,input.DataInclusao,input.DataAlteracao);
+            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia, input.RazaoSocial, input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.DataInclusao, input.DataAlteracao);
 
             _addCustomerUseCase.AddCustomer(customer);
 

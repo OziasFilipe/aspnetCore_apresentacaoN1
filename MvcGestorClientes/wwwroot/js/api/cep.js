@@ -40,5 +40,7 @@ function ImplantarCampos(endereco)
     document.getElementById("logradouro").value = endereco.logradouro;
     document.getElementById("bairro").value = endereco.bairro;
     document.getElementById("complemento").value = endereco.complemento;
+    document.getElementById("unidade-federativa").value = endereco.uf; 
+    document.getElementById("municipio").value =  endereco.localidade
 
 }
