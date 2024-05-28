@@ -83,22 +83,22 @@
                         <table id="data-table-basic" class="table table-striped" >
                             <thead>
                                 <tr>
-                                    <th>
+                                    <th scope="col">
                                         Nome Fantasia
-                                    </th>
-                                    <th>
+                                    </th >
+                                    <th scope="col">
                                         Razão Social
                                     </th>
-                                    <th>
+                                    <th scope="col">
                                         CPF/CNPJ
                                     </th>
-                                    <th>
+                                    <th scope="col">
                                         RG/IE
                                     </th>
-                                    <th>
+                                    <th scope="col">
                                         Tipo
                                     </th>
-                                    <th>
+                                    <th scope="col">
                                         Ação
                                     </th>
                                 </tr>
@@ -106,25 +106,25 @@
                             <tbody >
                                 @foreach (var customer in Model)
                                 {
-                                    <tr>
-                                    <td>@customer.NomeFantasia</td>
-                                    <td>
+                                    <tr >
+                                        <td style="padding-top:28px">@customer.NomeFantasia</td>
+                                        <td style="padding-top:28px">
     @(customer.RazaoSocial != null && customer.RazaoSocial.Length > 23 ? customer.RazaoSocial.Substring(0, 23) + "..." : customer.RazaoSocial)
 </td>
-   <td>@customer.CpfCnpj</td>
-                                        <td>@customer.RG_IE</td>
-                                        <td>@customer.Tipo</td>
+                                        <td style="padding-top:28px">@customer.CpfCnpj</td>
+                                        <td style="padding-top:28px">@customer.RG_IE</td>
+                                        <td style="padding-top:28px">@customer.Tipo</td>
                                         <td >
-                                           
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="height:30px">
                                                 <div class="breadcomb-report pull-right" style="padding-left:10px">
-                                                    <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(@customer.Id)"><i class="fa fa-edit"></i></a>
+                                                    <a title="Editar" style="height:30px" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(@customer.Id)"><i class="fa fa-edit"></i></a>
                                                 </div>
                                             </div>
 
                                             <form action="/Cliente/Delete/@customer.Id" method="post" style="margin-top:8px" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
                                                 <input type="hidden" name="_method" value="DELETE" />
-                                                <button type="submit" class="btn btn-danger">
+                                                <button type="submit" class="btn btn-danger" style="height:30px">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
