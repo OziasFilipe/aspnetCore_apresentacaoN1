@@ -3,7 +3,7 @@
 
     public class AddCustomerInput
     {
-        public int id { get; }
+        public int id { get; set; }
         public string Codigo { get;  set; } = string.Empty;
         public string NomeFantasia { get;  set; } = string.Empty;
         public string RazaoSocial { get;  set; } = string.Empty;

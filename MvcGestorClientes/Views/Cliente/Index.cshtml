@@ -142,64 +142,6 @@
 </div>
 
 
-<script>
-    document.getElementById('btnPesquisar').addEventListener('click', function () {
-        var filtroCodigo = document.getElementById('filtroCodigo').value;
-        var filtroCPFCNPJ = document.getElementById('filtroCPFCNPJ').value;
-        var filtroNomeRazaoSocial = document.getElementById('filtroNomeRazaoSocial').value;
-
-        fetch(`/Cliente/Pesquisar?filtroCodigo=${filtroCodigo}&filtroCPFCNPJ=${filtroCPFCNPJ}&filtroNomeRazaoSocial=${filtroNomeRazaoSocial}`)
-            .then(response => response.json())
-            .then(data => {
-                var tableBody = document.querySelector('#data-table-basic tbody');
-                tableBody.innerHTML = '';
-                console.log(data);
-
-                data.forEach(function (cliente) {
-                    var row = document.createElement('tr');
-                    row.innerHTML = `
-                                <td>${cliente.nomeFantasia}</td>
-                            <td>${cliente.razaoSocial}</td>
-                                    <td>${cliente.cpfCnpj}</td>
-                            <td>${cliente.rG_IE}</td>
-                            <td>${cliente.tipo}</td>
-                           
-                                 <td >
-
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="breadcomb-report pull-right" style="padding-left:10px">
-                                                            <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(${cliente.id})"><i class="fa fa-edit"></i> Editar</a>
-                                                    </div>
-                                                </div>
-
-                                                    <form action="/Cliente/Delete/${cliente.id}" method="post" style="margin-top:8px" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
-                                                    <input type="hidden" name="_method" value="DELETE" />
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <i class="fa fa-trash"></i> Deletar
-                                                    </button>
-                                                </form>
-                                            </td>
-                        `;
-                    tableBody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Erro ao pesquisar clientes:', error));
-    });
-</script>
-
-
-<script>
-    // Botão de filtro
-    let aberto = false;
-    function BtnFiltro() {
-        if (aberto) {
-            document.getElementById("modalFiltro").style.display = "none";
-        } else {
-            document.getElementById("modalFiltro").style.display = "block";
-        }
-        aberto = !aberto; // Alterna o valor de 'aberto'
-    }
-</script>
 
 
 
@@ -356,3 +298,65 @@
             });
       }
   </script>
+
+
+
+
+<script>
+    document.getElementById('btnPesquisar').addEventListener('click', function () {
+        var filtroCodigo = document.getElementById('filtroCodigo').value;
+        var filtroCPFCNPJ = document.getElementById('filtroCPFCNPJ').value;
+        var filtroNomeRazaoSocial = document.getElementById('filtroNomeRazaoSocial').value;
+
+        fetch(`/Cliente/Pesquisar?filtroCodigo=${filtroCodigo}&filtroCPFCNPJ=${filtroCPFCNPJ}&filtroNomeRazaoSocial=${filtroNomeRazaoSocial}`)
+            .then(response => response.json())
+            .then(data => {
+                var tableBody = document.querySelector('#data-table-basic tbody');
+                tableBody.innerHTML = '';
+                console.log(data);
+
+                data.forEach(function (cliente) {
+                    var row = document.createElement('tr');
+                    row.innerHTML = `
+                                    <td>${cliente.nomeFantasia}</td>
+                                <td>${cliente.razaoSocial}</td>
+                                        <td>${cliente.cpfCnpj}</td>
+                                    <td>${cliente.rG_IE}</td>
+                                <td>${cliente.tipo}</td>
+
+                                     <td >
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="breadcomb-report pull-right" style="padding-left:10px">
+                                                                <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(${cliente.id})"><i class="fa fa-edit"></i> Editar</a>
+                                                        </div>
+                                                    </div>
+
+                                                        <form action="/Cliente/Delete/${cliente.id}" method="post" style="margin-top:8px" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
+                                                        <input type="hidden" name="_method" value="DELETE" />
+                                                        <button type="submit" class="btn btn-danger">
+                                                            <i class="fa fa-trash"></i> Deletar
+                                                        </button>
+                                                    </form>
+                                                </td>
+                            `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Erro ao pesquisar clientes:', error));
+    });
+</script>
+
+
+<script>
+    // Botão de filtro
+    let aberto = false;
+    function BtnFiltro() {
+        if (aberto) {
+            document.getElementById("modalFiltro").style.display = "none";
+        } else {
+            document.getElementById("modalFiltro").style.display = "block";
+        }
+        aberto = !aberto; // Alterna o valor de 'aberto'
+    }
+</script>
