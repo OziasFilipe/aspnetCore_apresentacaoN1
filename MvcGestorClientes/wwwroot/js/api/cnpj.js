@@ -31,16 +31,16 @@ async function consultarCNPJ() {
 function ImplantarCampos(dados) {
     console.log(dados); // Exibe os dados do endereço no console
 
-    document.getElementById("razao-social").value = dados.nome;
-    document.getElementById("logradouro").value = dados.logradouro;
-    document.getElementById("bairro").value = dados.bairro;
-    document.getElementById("complemento").value = dados.complemento;
-    document.getElementById("unidade-federativa").value = dados.uf;
-    document.getElementById("municipio").value = dados.municipio;
-    document.getElementById("numero").value = dados.numero;
-    document.getElementById("cep").value = dados.cep;
-    document.getElementById("email").value = dados.email;
-    document.getElementById("telefone").value = dados.telefone;
+    document.getElementById("razao-social").value = dados.nome == undefined ? "" : dados.nome;
+    document.getElementById("logradouro").value = dados.logradouro == undefined ? "" : dados.logradouro;;
+    document.getElementById("bairro").value = dados.bairro == undefined ? "" : dados.bairro;;
+    document.getElementById("complemento").value = dados.complemento == undefined ? "" : dados.complemento;
+    document.getElementById("unidade-federativa").value = dados.uf == undefined ? "" : dados.uf;
+    document.getElementById("municipio").value = dados.municipio == undefined ? "" : dados.municipio;
+    document.getElementById("numero").value = dados.numero == undefined ? "" : dados.numero;
+    document.getElementById("cep").value = dados.cep == undefined ? "" : dados.cep;
+    document.getElementById("email").value = dados.email == undefined ? "" : dados.email;
+    document.getElementById("telefone").value = dados.telefone == undefined ? "" : dados.telefone;
 }
 
 

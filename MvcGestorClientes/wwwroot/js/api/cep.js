@@ -37,10 +37,10 @@ function ImplantarCampos(endereco)
 {
     console.log(endereco); // Exibe os dados do endereço no console
 
-    document.getElementById("logradouro").value = endereco.logradouro;
-    document.getElementById("bairro").value = endereco.bairro;
-    document.getElementById("complemento").value = endereco.complemento;
-    document.getElementById("unidade-federativa").value = endereco.uf; 
-    document.getElementById("municipio").value =  endereco.localidade
+    document.getElementById("logradouro").value = endereco.logradouro == undefined ? "" : endereco.logradouro;
+    document.getElementById("bairro").value = endereco.bairro == undefined ? "" : endereco.bairro;
+    document.getElementById("complemento").value = endereco.complemento == undefined ? "" : endereco.complemento;
+    document.getElementById("unidade-federativa").value = endereco.uf == undefined ? "" : endereco.uf;
+    document.getElementById("municipio").value = endereco.localidade == undefined ? "" : endereco.localidade;
 
 }
