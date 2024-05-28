@@ -58,6 +58,19 @@ namespace Gestao_de_Clientes.Controllers
         }
 
 
+        public IActionResult GetEdit(int id)
+        {
+            var customer = _addCustomerUseCase.GetCustomerById(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return Json(customer);
+        }
+
+
+
 
     }
 }

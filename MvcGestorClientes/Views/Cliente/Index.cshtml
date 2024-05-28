@@ -116,7 +116,7 @@
                                            
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="breadcomb-report pull-right" style="padding-left:10px">
-                                                    <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal"><i class="fa fa-edit"></i> Editar</a>
+                                                    <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit()"><i class="fa fa-edit"></i> Editar</a>
                                                 </div>
                                             </div>
 
@@ -312,3 +312,40 @@
   modal.find('.modal-body input').val(recipient)
 })
 </script>
+
+
+
+
+  <script>
+      function GetEdit()
+      {
+        fetch(`/Cliente/GetEdit/${23}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById('edit-id').value = data.id;
+                document.getElementById('edit-codigo').value = data.codigo;
+                document.getElementById('edit-cpf-cnpj').value = data.cpfCnpj;
+                document.getElementById('edit-nome-fantasia').value = data.nomeFantasia;
+                document.getElementById('edit-razao-social').value = data.razaoSocial;
+                document.getElementById('edit-rg-ie').value = data.rG_IE;
+                document.getElementById('edit-tipo').value = data.tipo;
+                document.getElementById('edit-cep').value = data.cep;
+                document.getElementById('edit-logradouro').value = data.logradouro;
+                document.getElementById('edit-numero').value = data.numero;
+                document.getElementById('edit-complemento').value = data.complemento;
+                document.getElementById('edit-bairro').value = data.bairro;
+                document.getElementById('edit-municipio').value = data.municipio;
+                document.getElementById('edit-unidade-federativa').value = data.unidadeFederativa;
+                document.getElementById('edit-email').value = data.email;
+                document.getElementById('edit-telefone').value = data.telefone;
+
+                // Abrir o modal após carregar os dados
+                $('#editarModal').modal('show');
+            })
+            .catch(error => {
+                console.error('Erro ao carregar dados do cliente:', error);
+                alert('Erro ao carregar dados do cliente.');
+            });
+      }
+  </script>
