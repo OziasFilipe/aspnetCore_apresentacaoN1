@@ -5,6 +5,7 @@ namespace Domain.Contracts.Repositories.AddCustomer
     public interface IAddCustomerRepository
     {
         void AddCustomer(Customer customer);
+        void PutCustomer(Customer customer);
         IEnumerable<Customer> GetAllCustomers();
         Customer GetCustomerById(int id);
         Customer GetCustomerByCodigo(string codigo);

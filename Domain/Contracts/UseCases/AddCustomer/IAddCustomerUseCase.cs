@@ -5,6 +5,7 @@ namespace Domain.Contracts.UseCases.AddCustomer
     public interface IAddCustomerUseCase
     {
         void AddCustomer(Customer customer);
+        void PutCustomer(Customer customer);
         IEnumerable<Customer> GetAllCustomers();
         Customer GetCustomerById(int id);
         Customer GetCustomerByCodigo(string codigo);

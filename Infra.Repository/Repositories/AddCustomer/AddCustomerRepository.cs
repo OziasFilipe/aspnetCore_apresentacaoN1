@@ -47,6 +47,37 @@ namespace Infra.Repository.Repositories.AddCustomer
             connection.Execute(query, parameters);
         }
 
+        public void PutCustomer(Customer customer)
+        {
+            var query = "UPDATE Clientes SET " +  "NomeAbrevido_Fantasia = @nomeFantasia, " + "Nome_RazaoSocial = @nomeRazaoSocial, " + "CPF_CNPJ = @cpfcnpj, " +
+                        "RG_IE = @rgIe, " + "Tipo = @tipo, " + "Cep = @cep, " + "Logradouro = @logradouro, " +  "Numero = @numero, " +
+                        "Complemento = @complemento, " +  "Bairro = @bairro, " +  "Municipio = @municipio, " + "Unidade_Federativa = @unidadeFederativa, " +  "Email = @email, " + "Telefone = @telefone, " +  "Data_Alteracao = @alteracao " +  "WHERE Id = @id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("id",customer.Id, System.Data.DbType.String);
+            parameters.Add("codigo", customer.Codigo, System.Data.DbType.String);
+            parameters.Add("nomeFantasia", customer.NomeFantasia, System.Data.DbType.String);
+            parameters.Add("nomeRazaoSocial", customer.RazaoSocial, System.Data.DbType.String);
+            parameters.Add("cpfcnpj", customer.CpfCnpj, System.Data.DbType.String);
+            parameters.Add("rgIe", customer.RG_IE, System.Data.DbType.String);
+            parameters.Add("tipo", customer.Tipo, System.Data.DbType.String);
+            parameters.Add("cep", customer.Cep, System.Data.DbType.String);
+            parameters.Add("logradouro", customer.Logradouro, System.Data.DbType.String);
+            parameters.Add("numero", customer.Numero, System.Data.DbType.String);
+            parameters.Add("complemento", customer.Complemento, System.Data.DbType.String);
+            parameters.Add("bairro", customer.Bairro, System.Data.DbType.String);
+            parameters.Add("municipio", customer.Municipio, System.Data.DbType.String);
+            parameters.Add("unidadeFederativa", customer.UnidadeFederativa, System.Data.DbType.String);
+            parameters.Add("email", customer.Email, System.Data.DbType.String);
+            parameters.Add("telefone", customer.Telefone, System.Data.DbType.String);
+
+            parameters.Add("alteracao", DateTime.Now, System.Data.DbType.DateTime);
+            parameters.Add("criacao", DateTime.Now, System.Data.DbType.DateTime);
+
+            using var connection = _dbContext.CreateConnection();
+
+            connection.Execute(query, parameters);
+        }
         public IEnumerable<Customer> GetAllCustomers()
         {
             string query = "SELECT * FROM Clientes";

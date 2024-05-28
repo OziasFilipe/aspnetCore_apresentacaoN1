@@ -18,6 +18,11 @@ namespace Application.UseCases.AddCustomer
             _addCustomerRepository.AddCustomer(customer);
         }
 
+        public void PutCustomer(Customer customer)
+        {
+            _addCustomerRepository.PutCustomer(customer);
+        }
+
         public IEnumerable<Customer> GetAllCustomers()
         {
             return _addCustomerRepository.GetAllCustomers();

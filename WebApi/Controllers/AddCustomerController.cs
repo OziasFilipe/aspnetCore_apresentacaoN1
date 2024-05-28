@@ -30,7 +30,7 @@ namespace WebApi.Controllers
                 return BadRequest(validationResult.Errors.ToCustomValidationFailure());
             }
            
-            var customer = new Domain.Entities.Customer(input.Codigo, input.NomeFantasia, input.RazaoSocial, input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.DataInclusao, input.DataAlteracao);
+            var customer = new Domain.Entities.Customer(input.id, input.Codigo, input.NomeFantasia, input.RazaoSocial, input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.DataInclusao, input.DataAlteracao);
 
             _addCustomerUseCase.AddCustomer(customer);
 
@@ -88,6 +88,24 @@ namespace WebApi.Controllers
         {
             _addCustomerUseCase.DeleteCustomerById(id);
             return NoContent();
+        }
+
+
+        [HttpPut]
+        public IActionResult PutCustomer(AddCustomerInput input)
+        {
+            var validationResult = _addCustomerInputValidator.Validate(input);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors.ToCustomValidationFailure());
+            }
+
+            var customer = new Domain.Entities.Customer(input.id ,input.Codigo, input.NomeFantasia, input.RazaoSocial, input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.DataInclusao, input.DataAlteracao);
+
+            _addCustomerUseCase.PutCustomer(customer);
+
+            return Created("", "Registro Atualizado com Sucesso!");
         }
     }
 
