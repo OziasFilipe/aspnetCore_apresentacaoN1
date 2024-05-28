@@ -207,14 +207,14 @@
 
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="breadcomb-report pull-right" style="padding-left:10px">
-                                                                <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(${cliente.id})"><i class="fa fa-edit"></i> Editar</a>
+                                                                <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(${cliente.id})"><i class="fa fa-edit"></i></a>
                                                         </div>
                                                     </div>
 
                                                         <form action="/Cliente/Delete/${cliente.id}" method="post" style="margin-top:8px" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
                                                         <input type="hidden" name="_method" value="DELETE" />
                                                         <button type="submit" class="btn btn-danger">
-                                                            <i class="fa fa-trash"></i> Deletar
+                                                            <i class="fa fa-trash"></i>
                                                         </button>
                                                     </form>
                                                 </td>
