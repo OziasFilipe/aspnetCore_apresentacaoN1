@@ -49,7 +49,7 @@ namespace Infra.Repository.Repositories.AddCustomer
 
         public void PutCustomer(Customer customer)
         {
-            var query = "UPDATE Clientes SET " +  "NomeAbrevido_Fantasia = @nomeFantasia, " + "Nome_RazaoSocial = @nomeRazaoSocial, " + "CPF_CNPJ = @cpfcnpj, " +
+            var query = "UPDATE Clientes SET " + "Codigo = @codigo, " + "NomeAbrevido_Fantasia = @nomeFantasia, " + "Nome_RazaoSocial = @nomeRazaoSocial, " + "CPF_CNPJ = @cpfcnpj, " +
                         "RG_IE = @rgIe, " + "Tipo = @tipo, " + "Cep = @cep, " + "Logradouro = @logradouro, " +  "Numero = @numero, " +
                         "Complemento = @complemento, " +  "Bairro = @bairro, " +  "Municipio = @municipio, " + "Unidade_Federativa = @unidadeFederativa, " +  "Email = @email, " + "Telefone = @telefone, " +  "Data_Alteracao = @alteracao " +  "WHERE Id = @id";
 
@@ -72,7 +72,6 @@ namespace Infra.Repository.Repositories.AddCustomer
             parameters.Add("telefone", customer.Telefone, System.Data.DbType.String);
 
             parameters.Add("alteracao", DateTime.Now, System.Data.DbType.DateTime);
-            parameters.Add("criacao", DateTime.Now, System.Data.DbType.DateTime);
 
             using var connection = _dbContext.CreateConnection();
 
@@ -80,7 +79,7 @@ namespace Infra.Repository.Repositories.AddCustomer
         }
         public IEnumerable<Customer> GetAllCustomers()
         {
-            string query = "SELECT * FROM Clientes";
+            string query = "SELECT Id, Codigo codigo, NomeAbrevido_Fantasia nomeFantasia, Nome_RazaoSocial razaoSocial, CPF_CNPJ cpfCnpj, RG_IE, Tipo, Cep, Logradouro, Numero, Complemento, Bairro, Municipio, Unidade_Federativa unidadeFederativa, Email, Telefone, Data_Alteracao dataAlteracao, Data_Inclusao dataInclusao FROM Clientes ";
             using var connection = _dbContext.CreateConnection();
 
             return connection.Query<Customer>(query);
@@ -88,14 +87,14 @@ namespace Infra.Repository.Repositories.AddCustomer
 
         public Customer GetCustomerById(int id)
         {
-            string query = "SELECT * FROM Clientes WHERE Id = @Id";
+            string query = "SELECT Id, Codigo codigo, NomeAbrevido_Fantasia nomeFantasia, Nome_RazaoSocial razaoSocial, CPF_CNPJ cpfCnpj, RG_IE, Tipo, Cep, Logradouro, Numero, Complemento, Bairro, Municipio, Unidade_Federativa unidadeFederativa, Email, Telefone, Data_Alteracao dataAlteracao, Data_Inclusao dataInclusao FROM Clientes  WHERE Id = @Id";
             using var connection = _dbContext.CreateConnection();
             return connection.QuerySingleOrDefault<Customer>(query, new { Id = id });
         }
 
         public Customer GetCustomerByCodigo(string codigo)
         {
-            string query = "SELECT * FROM Clientes WHERE Codigo = @Cod";
+            string query = "SELECT Id, Codigo codigo, NomeAbrevido_Fantasia nomeFantasia, Nome_RazaoSocial razaoSocial, CPF_CNPJ cpfCnpj, RG_IE, Tipo, Cep, Logradouro, Numero, Complemento, Bairro, Municipio, Unidade_Federativa unidadeFederativa, Email, Telefone, Data_Alteracao dataAlteracao, Data_Inclusao dataInclusao FROM Clientes  WHERE Codigo = @Cod";
             using var connection = _dbContext.CreateConnection();
             return connection.QuerySingleOrDefault<Customer>(query, new { Cod = codigo });
         }
@@ -103,14 +102,14 @@ namespace Infra.Repository.Repositories.AddCustomer
 
         public Customer GetCustomerByRazaoSocial(string razaoSocial)
         {
-            string query = "SELECT * FROM Clientes WHERE Nome_RazaoSocial = @RazaoSocial";
+            string query = "SELECT Id, Codigo codigo, NomeAbrevido_Fantasia nomeFantasia, Nome_RazaoSocial razaoSocial, CPF_CNPJ cpfCnpj, RG_IE, Tipo, Cep, Logradouro, Numero, Complemento, Bairro, Municipio, Unidade_Federativa unidadeFederativa, Email, Telefone, Data_Alteracao dataAlteracao, Data_Inclusao dataInclusao FROM Clientes  WHERE Nome_RazaoSocial = @RazaoSocial";
             using var connection = _dbContext.CreateConnection();
             return connection.QuerySingleOrDefault<Customer>(query, new { RazaoSocial = razaoSocial });
         }
 
         public Customer GetCustomerByCpfCnpj(string cpfCnpj)
         {
-            string query = "SELECT * FROM Clientes WHERE CPF_CNPJ = @CnpjCpf";
+            string query = "SELECT Id, Codigo codigo, NomeAbrevido_Fantasia nomeFantasia, Nome_RazaoSocial razaoSocial, CPF_CNPJ cpfCnpj, RG_IE, Tipo, Cep, Logradouro, Numero, Complemento, Bairro, Municipio, Unidade_Federativa unidadeFederativa, Email, Telefone, Data_Alteracao dataAlteracao, Data_Inclusao dataInclusao FROM Clientes WHERE CPF_CNPJ = @CnpjCpf";
             using var connection = _dbContext.CreateConnection();
             return connection.QuerySingleOrDefault<Customer>(query, new { CnpjCpf = cpfCnpj });
         }
