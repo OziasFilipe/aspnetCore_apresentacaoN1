@@ -11,7 +11,12 @@ async function consultarCNPJ() {
             throw new Error('Erro na consulta da API');
         }
         const data = await response.json();
-        ImplantarCampos(data);
+
+        if (data.status != "ERROR")
+        {
+            ImplantarCampos(data);
+
+        }
         console.log(data);
 
         document.getElementById('resultado').textContent = JSON.stringify(data, null, 2);
