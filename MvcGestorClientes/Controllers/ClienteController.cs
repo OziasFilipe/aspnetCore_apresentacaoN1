@@ -100,7 +100,7 @@ namespace Gestao_de_Clientes.Controllers
             if (!string.IsNullOrEmpty(filtroCPFCNPJ))
             {
                 clientes = clientes.Where(c => c.CpfCnpj.Contains(filtroCPFCNPJ));
-            }
+            } 
 
             if (!string.IsNullOrEmpty(filtroNomeRazaoSocial))
             {
