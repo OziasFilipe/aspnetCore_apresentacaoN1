@@ -1,7 +1,7 @@
-Estudo Clean Architecture
+<h4>Estudo Clean Architecture</h4>
 
 Este projeto visa explorar a Clean Architecture. Foi simplificadamente estruturado em camadas: domínio, infraestrutura de repositório e aplicação, com duas implementações: uma API ASP.NET Core e uma aplicação ASP.NET Core MVC. Além disso, foram adicionados recursos como Dapper para a conexão com o banco de dados. A abordagem simplificada foi adotada, onde o código SQL foi diretamente incorporado ao repositório para lidar com operações na tabela. Por exemplo, para o cadastro de clientes, o SQL correspondente foi incluído no repositório. Alternativamente, poderiam ter sido usadas stored procedures para manipular a tabela e suas colunas. Algumas validações simplificadas foram implementadas. Como este projeto é uma exploração da arquitetura de software, foram introduzidas algumas preferências. Apesar das dificuldades encontradas, o projeto pode ser refinado para uma abordagem mais complexa, distribuindo de forma mais clara as responsabilidades entre as camadas.
-
+Além disso, foram utilizados dois recursos externos: uma API de CEP e outra de CNPJ, para trazer os dados do cliente quando necessário. Como observado, o serviço de CEP será acessado diretamente no JavaScript, enquanto para o CNPJ, foi criado um arquivo .CS para lidar com questões de CORS no navegador, permitindo seu funcionamento.
 
 Recursos Utilizados:
 
