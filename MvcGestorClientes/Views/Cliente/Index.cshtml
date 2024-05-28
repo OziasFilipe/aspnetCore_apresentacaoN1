@@ -153,25 +153,32 @@
             .then(data => {
                 var tableBody = document.querySelector('#data-table-basic tbody');
                 tableBody.innerHTML = '';
+                console.log(data);
 
                 data.forEach(function (cliente) {
                     var row = document.createElement('tr');
                     row.innerHTML = `
-                            <td>${cliente.nomeFantasia}</td>
-                            <td>${cliente.nomeRazaoSocial}</td>
-                            <td>${cliente.cpfcnpj}</td>
-                            <td>${cliente.rgie}</td>
+                                <td>${cliente.nomeFantasia}</td>
+                            <td>${cliente.razaoSocial}</td>
+                                    <td>${cliente.cpfCnpj}</td>
+                            <td>${cliente.rG_IE}</td>
                             <td>${cliente.tipo}</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <a href="/Cliente/Edit/${cliente.id}" class="btn btn-primary">
-                                        <i class="fa fa-edit"></i> Editar
-                                    </a>
-                                    <a href="/Cliente/Delete/${cliente.id}" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i> Deletar
-                                    </a>
-                                </div>
-                            </td>
+                           
+                                 <td >
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="breadcomb-report pull-right" style="padding-left:10px">
+                                                            <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(${cliente.id})"><i class="fa fa-edit"></i> Editar</a>
+                                                    </div>
+                                                </div>
+
+                                                    <form action="/Cliente/Delete/${cliente.id}" method="post" style="margin-top:8px" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
+                                                    <input type="hidden" name="_method" value="DELETE" />
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="fa fa-trash"></i> Deletar
+                                                    </button>
+                                                </form>
+                                            </td>
                         `;
                     tableBody.appendChild(row);
                 });
