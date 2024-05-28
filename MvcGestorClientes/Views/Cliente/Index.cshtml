@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Domain.Entities.Customer>
 <!-- index.cshtml -->
 
-@Html.Partial("~/Views/Cliente/Edit.cshtml")
 @Html.Partial("~/Views/Cliente/Create.cshtml")
+@Html.Partial("~/Views/Cliente/Edit.cshtml")
 
 @{
     ViewData["Title"] = "Index";
@@ -52,7 +52,7 @@
                 <div class="breadcomb-list">
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <input id="filtroCodigo" type="text" class="form-control" placeholder="Código" />
+                            <input id="filtroCodigo" type="text" class="form-control" placeholder="Código" maxlength="18"/>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <input id="filtroCPFCNPJ" type="text" class="form-control" placeholder="CPF/CNPJ" />
@@ -107,23 +107,25 @@
                                 @foreach (var customer in Model)
                                 {
                                     <tr>
-                                        <td>@customer.NomeFantasia</td>
-                                        <td>@customer.RazaoSocial</td>
-                                        <td>@customer.CpfCnpj</td>
+                                    <td>@customer.NomeFantasia</td>
+                                    <td>
+    @(customer.RazaoSocial != null && customer.RazaoSocial.Length > 23 ? customer.RazaoSocial.Substring(0, 23) + "..." : customer.RazaoSocial)
+</td>
+   <td>@customer.CpfCnpj</td>
                                         <td>@customer.RG_IE</td>
                                         <td>@customer.Tipo</td>
                                         <td >
                                            
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="breadcomb-report pull-right" style="padding-left:10px">
-                                                    <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(@customer.Id)"><i class="fa fa-edit"></i> Editar</a>
+                                                    <a title="Editar" class="btn" data-toggle="modal" data-target="#editarModal" onclick="GetEdit(@customer.Id)"><i class="fa fa-edit"></i></a>
                                                 </div>
                                             </div>
 
                                             <form action="/Cliente/Delete/@customer.Id" method="post" style="margin-top:8px" onsubmit="return confirm('Tem certeza de que deseja deletar este cliente?')" class="d-inline-block">
                                                 <input type="hidden" name="_method" value="DELETE" />
                                                 <button type="submit" class="btn btn-danger">
-                                                    <i class="fa fa-trash"></i> Deletar
+                                                    <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
                                         </td>
@@ -140,129 +142,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-<form action="/Cliente/Create" method="post">
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Novo Cliente</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="codigo" class="col-form-label">Código:<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="codigo" name="Codigo" required maxlength="15">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="cpf-cnpj" class="col-form-label">CPF/CNPJ:<span style="color:red">* Auto</span></label>
-                                <input type="text" class="form-control" id="cpf-cnpj" name="CpfCnpj" required onchange="BuscarCNPJ()" maxlength="50">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="nome-fantasia" class="col-form-label">Nome Fantasia:</label>
-                                <input type="text" class="form-control" id="nome-fantasia" name="NomeFantasia" maxlength="50">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="razao-social" class="col-form-label">Razão Social:<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="razao-social" name="RazaoSocial" required maxlength="50">
-                            </div>
-                       
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="rg-ie" class="col-form-label">RG/IE:</label>
-                                <input type="number" class="form-control" id="rg-ie" name="RG_IE" maxlength="12">
-                            </div>
-                             <div class="form-group col-md-6">
-                              <label for="tipo" class="col-form-label">Tipo:</label>
-                              <select class="form-control" id="tipo" name="Tipo">
-                                <option value="PJ">Pessoa Jurídica (PJ)</option>
-                                <option value="PF">Pessoa Física (PF)</option>
-                              </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="cep" class="col-form-label">CEP:<span style="color:red">* Auto</span></label>
-                                <input type="text" class="form-control" id="cep" name="Cep" required onchange="BuscarCep()" maxlength="9">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="logradouro" class="col-form-label">Logradouro:</label>
-                                <input type="text" class="form-control" id="logradouro" name="Logradouro" maxlength="50">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="numero" class="col-form-label">Número:</label>
-                                <input type="text" class="form-control" id="numero" name="Numero" maxlength="4">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="complemento" class="col-form-label">Complemento:</label>
-                                <input type="text" class="form-control" id="complemento" name="Complemento" maxlength="50">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="bairro" class="col-form-label">Bairro:</label>
-                                <input type="text" class="form-control" id="bairro" name="Bairro" maxlength="50">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="municipio" class="col-form-label">Município:</label>
-                                <input type="text" class="form-control" id="municipio" name="Municipio" maxlength="50">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="unidade-federativa" class="col-form-label">Unidade Federativa:</label>
-                                <input type="text" class="form-control" id="unidade-federativa" name="UnidadeFederativa" maxlength="4">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="email" class="col-form-label">Email:<span style="color:red">*</span></label>
-                                <input type="email" class="form-control" id="email" name="Email" required maxlength="50">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="telefone" class="col-form-label">Telefone:<span style="color:red">*</span></label>
-                                <input type="tel" class="form-control" id="telefone" name="Telefone" required maxlength="13">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer" >
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-     <script>
-     $('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-</script>
-
-
 
 
   <script>

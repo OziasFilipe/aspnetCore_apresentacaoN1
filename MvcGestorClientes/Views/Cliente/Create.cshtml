@@ -1,21 +1,15 @@
-﻿@model IEnumerable<Domain.Entities.Customer>
-
+﻿<script src="~/js/InputsValidation/input.js"></script>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Criar";
 }
 
 
-
-
-
-
-
 <form action="/Cliente/Create" method="post">
-    <div class="modal fade" id="criarModal" tabindex="-1" role="dialog" aria-labelledby="criarModallLabel" aria-hidden="true">
+    <div class="modal fade" id="criarModal" tabindex="-1" role="dialog" aria-labelledby="criarModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Criar Cliente</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Novo Cliente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -29,24 +23,25 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="cpf-cnpj" class="col-form-label">CPF/CNPJ:<span style="color:red">* Auto</span></label>
-                                <input type="text" class="form-control" id="cpf-cnpj" name="CpfCnpj" required onchange="BuscarCNPJ()" maxlength="50">
+                                <input type="text" class="form-control" id="cpf-cnpj" name="CpfCnpj" required  maxlength="18">
+
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="nome-fantasia" class="col-form-label">Nome Fantasia:</label>
-                                <input type="text" class="form-control" id="nome-fantasia" name="NomeFantasia" maxlength="50">
+                                <input type="text" class="form-control" id="nome-fantasia" name="NomeFantasia" maxlength="23">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="razao-social" class="col-form-label">Razão Social:<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="razao-social" name="RazaoSocial" required maxlength="50">
+                                <input type="text" class="form-control" id="razao-social" name="RazaoSocial" required maxlength="30">
                             </div>
                        
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="rg-ie" class="col-form-label">RG/IE:</label>
-                                <input type="number" class="form-control" id="rg-ie" name="RG_IE" maxlength="12">
+                                <input type="text" class="form-control" id="rg-ie" name="RG_IE" maxlength="12">
                             </div>
                              <div class="form-group col-md-6">
                               <label for="tipo" class="col-form-label">Tipo:</label>
@@ -63,7 +58,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="logradouro" class="col-form-label">Logradouro:</label>
-                                <input type="text" class="form-control" id="logradouro" name="Logradouro" maxlength="50">
+                                <input type="text" class="form-control" id="logradouro" name="Logradouro" maxlength="40">
                             </div>
                         </div>
                         <div class="form-row">
@@ -99,7 +94,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="telefone" class="col-form-label">Telefone:<span style="color:red">*</span></label>
-                                <input type="tel" class="form-control" id="telefone" name="Telefone" required maxlength="13">
+                                <input type="tel" class="form-control" id="telefone" name="Telefone" required maxlength="15">
                             </div>
                         </div>
                     </form>
@@ -112,15 +107,3 @@
         </div>
     </div>
 </form>
-
-     <script>
-     $('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
-</script>
