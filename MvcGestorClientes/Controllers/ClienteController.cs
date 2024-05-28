@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Contracts.UseCases.AddCustomer;
 using FluentValidation;
 using Gestao_de_Clientes.Models.AddCustomer;
+using Infra.Repository.DbContext;
 
 
 
@@ -86,6 +87,28 @@ namespace Gestao_de_Clientes.Controllers
             return RedirectToAction("Index", "Cliente");
         }
 
+        [HttpGet]
+        public IActionResult Pesquisar(string filtroCodigo, string filtroCPFCNPJ, string filtroNomeRazaoSocial)
+        {
+            var clientes = _addCustomerUseCase.GetAllCustomers().AsQueryable();
+
+            if (!string.IsNullOrEmpty(filtroCodigo))
+            {
+                clientes = clientes.Where(c => c.Codigo.Contains(filtroCodigo));
+            }
+
+            if (!string.IsNullOrEmpty(filtroCPFCNPJ))
+            {
+                clientes = clientes.Where(c => c.CpfCnpj.Contains(filtroCPFCNPJ));
+            }
+
+            if (!string.IsNullOrEmpty(filtroNomeRazaoSocial))
+            {
+                clientes = clientes.Where(c => c.RazaoSocial.Contains(filtroNomeRazaoSocial));
+            }
+
+            return Json(clientes.ToList());
+        }
 
     }
 }
