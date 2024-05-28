@@ -69,7 +69,22 @@ namespace Gestao_de_Clientes.Controllers
             return Json(customer);
         }
 
+        [HttpPost]
+        public IActionResult Update(AddCustomerInput input)
+        {
+            var validationResult = _addCustomerInputValidator.Validate(input);
 
+            if (!validationResult.IsValid)
+            {
+                //return BadRequest(validationResult.Errors.ToCustomValidationFailure());
+            }
+
+            var customer = new Domain.Entities.Customer(input.id, input.Codigo, input.NomeFantasia, input.RazaoSocial, input.CpfCnpj, input.RG_IE, input.Tipo, input.Cep, input.Logradouro, input.Numero, input.Complemento, input.Bairro, input.Municipio, input.UnidadeFederativa, input.Email, input.Telefone, input.DataInclusao, input.DataAlteracao);
+
+            _addCustomerUseCase.PutCustomer(customer);
+
+            return RedirectToAction("Index", "Cliente");
+        }
 
 
     }

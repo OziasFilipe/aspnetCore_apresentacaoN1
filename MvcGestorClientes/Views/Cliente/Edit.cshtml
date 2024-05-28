@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Domain.Entities.Customer>
+﻿
 
 @{
     ViewData["Title"] = "Index";
@@ -11,7 +11,7 @@
 
 
 <!-- Modal de edição -->
-<form id="editForm" action="/Cliente/Edit" method="post">
+<form id="editForm" action="/Cliente/Update" method="post">
     <div class="modal fade" id="editarModal" tabindex="-1" role="dialog" aria-labelledby="editarModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -22,7 +22,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="edit-id" name="id">
+
+                    <input type="hidden" id="edit-id" name="Id">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="codigo" class="col-form-label">Código:<span style="color:red">*</span></label>
@@ -105,7 +106,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
                 </div>
             </div>
         </div>
