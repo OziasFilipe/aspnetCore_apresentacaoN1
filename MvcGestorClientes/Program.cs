@@ -15,6 +15,10 @@ builder.Services.AddScoped<IAddCustomerRepository, AddCustomerRepository>();
 builder.Services.AddScoped<IAddCustomerUseCase, AddCustomerUseCase>();
 builder.Services.AddTransient<IValidator<AddCustomerInput>, AddCustomerInputValidator>();
 
+
+// Adicionar HttpClient
+builder.Services.AddHttpClient(); // Adicione esta linha
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
