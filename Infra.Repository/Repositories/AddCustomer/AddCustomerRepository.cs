@@ -109,6 +109,8 @@ namespace Infra.Repository.Repositories.AddCustomer
 
         public Customer GetCustomerByCpfCnpj(string cpfCnpj)
         {
+            cpfCnpj = cpfCnpj.Replace("%2F", "/");
+
             string query = "SELECT Id, Codigo codigo, NomeAbrevido_Fantasia nomeFantasia, Nome_RazaoSocial razaoSocial, CPF_CNPJ cpfCnpj, RG_IE, Tipo, Cep, Logradouro, Numero, Complemento, Bairro, Municipio, Unidade_Federativa unidadeFederativa, Email, Telefone, Data_Alteracao dataAlteracao, Data_Inclusao dataInclusao FROM Clientes WHERE CPF_CNPJ = @CnpjCpf";
             using var connection = _dbContext.CreateConnection();
             return connection.QuerySingleOrDefault<Customer>(query, new { CnpjCpf = cpfCnpj });
