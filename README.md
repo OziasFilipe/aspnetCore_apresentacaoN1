@@ -10,8 +10,9 @@ FluentValidation
 Swashbuckle
 ASP.NET Core API
 ASP.NET Core MVC
-Poderiam ser Utilizados:
+BANCO DE DADOS: SQLSERVER - Esta em um serviço Online
 
+Poderiam ser Utilizados:
 EntityFramework em substituição ao Dapper, ADO.NET, entre outros recursos.
 
 OBS: Por se tratar de um estudo de Clean Architecture, é possível encontrar muitos erros; no entanto, ao longo do tempo, será refinada e construída uma base mais sólida.
